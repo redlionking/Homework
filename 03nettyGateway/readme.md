@@ -31,7 +31,7 @@ RequestFilter：
 fullRequest.headers().set("shadiao", "woshishadiao");
 ```
 
-![image-20210711162720079](C:/Users/TuTu/AppData/Roaming/Typora/typora-user-images/image-20210711162720079.png)
+![image-20210711162720079](gateway.assets/image-20210711162720079.png)
 
 ResponseFilter：
 
@@ -39,7 +39,7 @@ ResponseFilter：
  response.headers().set("xiaofeixia", "java-gg-nio");
 ```
 
-![image-20210711162759557](C:/Users/TuTu/AppData/Roaming/Typora/typora-user-images/image-20210711162759557.png)
+![image-20210711162759557](gateway.assets/image-20210711162759557.png)
 
 ## 路由
 
