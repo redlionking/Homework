@@ -1,0 +1,54 @@
+spring:
+  shardingsphere:
+    props:
+      sql-show: true
+
+    # 配置 2 个数据源
+    datasource:
+      names: ds0,ds1
+      common:
+        type: com.alibaba.druid.pool.DruidDataSource
+      ds0:
+        url: jdbc:mysql://192.168.121.131:3307/online_shop?useSSL=false&characterEncoding=utf8&useUnicode=true&serverTimezone=Asia/Shanghai
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: 123456
+      ds1:
+        url: jdbc:mysql://192.168.121.131:3308/online_shop?useSSL=false&characterEncoding=utf8&useUnicode=true&serverTimezone=Asia/Shanghai
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: 123456
+
+
+    rules:
+      replica-query:
+        load-balancers:
+          # 负载均衡算法
+          round-robin:
+            type: ROUND_ROBIN
+            # 这里是最神经病的地方, 不配置就报错! 配置吧又不知道配置什么
+            props:
+              # 你也可以配置 xxx: 123, yyy: 4342 但是必须得有一个属性, 随便编
+              default: 0
+        data-sources:
+          # 这个名字就随便起
+          prds:
+            # 主库
+            primary-data-source-name: ds0
+            # 从库
+            replica-data-source-names: ds1
+            load-balancer-name: round_robin
+
+
+
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+
+
+
+mybatis:
+  configuration:
+    typeAliasesPackage: tutu.sharing.pojo
+    mapperLocations: classpath:mapping/*.xml
+    map-underscore-to-camel-case: true
