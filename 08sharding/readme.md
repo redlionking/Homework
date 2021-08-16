@@ -16,7 +16,7 @@
 
 # 作业四：
 
-借鉴了大佬的作业。
+借鉴了其他人的思路，换了mysql5.7开始
 
 ```
 docker run -p 3311:3306 --name mysql11 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
